@@ -100,7 +100,7 @@ class OpenAICompatible:
             if m["role"] == "user":
                 out.append({"role": "user", "content": m["content"]})
             elif m["role"] == "assistant":
-                msg = {"role": "assistant", "content": m.get("content") or None}
+                msg = {"role": "assistant", "content": m.get("content") or (None if m.get("tool_calls") else "")}
                 if m.get("tool_calls"):
                     msg["tool_calls"] = [
                         {"id": c["id"], "type": "function",
@@ -154,7 +154,7 @@ class Anthropic:
             if m["role"] == "user":
                 push("user", [{"type": "text", "text": m["content"]}])
             elif m["role"] == "assistant":
-                if m.get("raw") is not None:
+                if m.get("raw"):
                     # Send back exactly what the model produced (thinking blocks
                     # included). History is append-only; we never rewrite it.
                     push("assistant", m["raw"])
@@ -162,7 +162,7 @@ class Anthropic:
                 blocks = [{"type": "text", "text": m["content"]}] if m.get("content") else []
                 blocks += [{"type": "tool_use", "id": c["id"], "name": c["name"], "input": c["args"]}
                            for c in m.get("tool_calls") or []]
-                push("assistant", blocks)
+                push("assistant", blocks or [{"type": "text", "text": "(no content)"}])
             elif m["role"] == "tool":
                 push("user", [{"type": "tool_result", "tool_use_id": m["id"], "content": m["content"]}])
         return out

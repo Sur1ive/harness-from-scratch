@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="545" viewBox="0 0 900 545">
+<style>text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;white-space:pre;animation:in .2s ease both}@keyframes in{from{opacity:0}to{opacity:1}}</style>
+<rect width="900" height="545" rx="12" fill="#0d1117"/>
+<circle cx="22" cy="20" r="6" fill="#ff5f57"/><circle cx="42" cy="20" r="6" fill="#febc2e"/><circle cx="62" cy="20" r="6" fill="#28c840"/>
+<text x="450.0" y="25" text-anchor="middle" fill="#8b949e" style="opacity:1;font-size:12px">harness-from-scratch — s08 · hooks</text>
+<text x="22" y="46" fill="#7ee787" font-weight="700" style="animation-delay:0.30s">$ python agents/s08_hooks.py</text>
+<text x="22" y="65" fill="#e6edf3" font-weight="400" style="animation-delay:1.20s"></text>
+<text x="22" y="84" fill="#f0f6fc" font-weight="700" style="animation-delay:1.48s">you › Write greet.py that greets the user by name from argv, and run it.</text>
+<text x="22" y="103" fill="#79c0ff" font-weight="400" style="animation-delay:2.38s">  ⏺ write_file(path=&quot;greet.py&quot;, content=&quot;import sys\nprint(f&#x27;Hello, {sys.argv[1]}!&#x27;\n&quot;)</text>
+<text x="22" y="122" fill="#8b949e" font-weight="400" style="animation-delay:2.98s">    ⚓ PreToolUse hook `python3 .harness/guard_env.py` -&gt; exit 0</text>
+<text x="22" y="141" fill="#d29922" font-weight="400" style="animation-delay:3.26s">    allow write_file? [y/n/a/feedback] y</text>
+<text x="22" y="160" fill="#ff7b72" font-weight="400" style="animation-delay:3.54s">    ⚓ PostToolUse hook `python3 .harness/check_syntax.py` -&gt; exit 2</text>
+<text x="22" y="179" fill="#8b949e" font-weight="400" style="animation-delay:3.82s">    │ wrote 42 chars to greet.py</text>
+<text x="22" y="198" fill="#8b949e" font-weight="400" style="animation-delay:4.10s">    │ </text>
+<text x="22" y="217" fill="#8b949e" font-weight="400" style="animation-delay:4.38s">    │ &lt;hook-feedback&gt;</text>
+<text x="22" y="236" fill="#8b949e" font-weight="400" style="animation-delay:4.66s">    │ File &quot;greet.py&quot;, line 2</text>
+<text x="22" y="255" fill="#8b949e" font-weight="400" style="animation-delay:4.94s">    │     print(f&#x27;Hello, {sys.argv[1]}!&#x27;</text>
+<text x="22" y="274" fill="#8b949e" font-weight="400" style="animation-delay:5.22s">    │          ^</text>
+<text x="22" y="293" fill="#8b949e" font-weight="400" style="animation-delay:5.50s">    │ … +2 lines</text>
+<text x="22" y="312" fill="#e6edf3" font-weight="400" style="animation-delay:5.78s">  The hook caught a missing parenthesis - fixing.</text>
+<text x="22" y="331" fill="#79c0ff" font-weight="400" style="animation-delay:6.06s">  ⏺ edit_file(path=&quot;greet.py&quot;, old=&quot;{sys.argv[1]}!&#x27;&quot;, new=&quot;{sys.argv[1]}!&#x27;)&quot;)</text>
+<text x="22" y="350" fill="#8b949e" font-weight="400" style="animation-delay:6.66s">    ⚓ PreToolUse hook `python3 .harness/guard_env.py` -&gt; exit 0</text>
+<text x="22" y="369" fill="#d29922" font-weight="400" style="animation-delay:6.94s">    allow edit_file? [y/n/a/feedback] y</text>
+<text x="22" y="388" fill="#8b949e" font-weight="400" style="animation-delay:7.22s">    ⚓ PostToolUse hook `python3 .harness/check_syntax.py` -&gt; exit 0</text>
+<text x="22" y="407" fill="#8b949e" font-weight="400" style="animation-delay:7.50s">    │ edited greet.py</text>
+<text x="22" y="426" fill="#79c0ff" font-weight="400" style="animation-delay:7.78s">  ⏺ bash(command=&quot;python3 greet.py Ada&quot;)</text>
+<text x="22" y="445" fill="#d29922" font-weight="400" style="animation-delay:8.38s">    allow bash? [y/n/a/feedback] y</text>
+<text x="22" y="464" fill="#8b949e" font-weight="400" style="animation-delay:8.66s">    │ Hello, Ada!</text>
+<text x="22" y="483" fill="#e6edf3" font-weight="400" style="animation-delay:8.94s"></text>
+<text x="22" y="502" fill="#e6edf3" font-weight="400" style="animation-delay:9.22s">greet.py works: `python3 greet.py Ada` prints `Hello, Ada!`.</text>
+</svg>

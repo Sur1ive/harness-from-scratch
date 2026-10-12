@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="440" viewBox="0 0 880 440" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="880" height="440" rx="18" fill="#ffffff"/>
+  <rect x="0.5" y="0.5" width="879" height="439" rx="18" fill="none" stroke="#e2e8f0"/>
+
+  <text x="32" y="44" font-size="20" font-weight="700" fill="#0f172a">The agent loop</text>
+  <text x="32" y="68" font-size="13" fill="#64748b">In s01 the loop is a dozen lines. Every later chapter plugs into a slot around it.</text>
+
+  <!-- you -->
+  <rect x="32" y="190" width="120" height="60" rx="12" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="92" y="216" font-size="15" font-weight="600" fill="#0f172a" text-anchor="middle">you</text>
+  <text x="92" y="236" font-size="12" fill="#64748b" text-anchor="middle">a request</text>
+  <line x1="152" y1="220" x2="262" y2="220" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="207" y="210" font-size="11" fill="#64748b" text-anchor="middle">messages[]</text>
+
+  <!-- the loop ring -->
+  <rect x="270" y="96" width="300" height="248" rx="26" fill="#fffbeb" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="420" y="122" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle" letter-spacing="1">while True:</text>
+
+  <!-- model -->
+  <rect x="296" y="136" width="248" height="56" rx="12" fill="#0f172a"/>
+  <text x="420" y="160" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">model</text>
+  <text x="420" y="180" font-size="11" fill="#cbd5e1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">llm.chat(system, messages, tools)</text>
+
+  <!-- tools -->
+  <rect x="296" y="262" width="248" height="56" rx="12" fill="#0f172a"/>
+  <text x="420" y="286" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">tools</text>
+  <text x="420" y="306" font-size="11" fill="#cbd5e1" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">run_tool(name, args)</text>
+
+  <!-- arrows inside loop -->
+  <path d="M380,192 L380,258" stroke="#d97706" stroke-width="2.2" fill="none" marker-end="url(#arrowAccent)"/>
+  <text x="372" y="230" font-size="11" fill="#b45309" text-anchor="end">tool_calls</text>
+  <path d="M460,262 L460,196" stroke="#d97706" stroke-width="2.2" fill="none" marker-end="url(#arrowAccent)"/>
+  <text x="468" y="224" font-size="11" fill="#b45309">results</text>
+  <text x="468" y="238" font-size="11" fill="#b45309">appended</text>
+
+  <!-- answer -->
+  <line x1="544" y1="164" x2="700" y2="164" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="628" y="154" font-size="11" fill="#64748b" text-anchor="middle">no tool calls → done</text>
+  <rect x="706" y="134" width="140" height="60" rx="12" fill="#ecfdf5" stroke="#10b981"/>
+  <text x="776" y="160" font-size="15" font-weight="600" fill="#065f46" text-anchor="middle">answer</text>
+  <text x="776" y="179" font-size="11.5" fill="#047857" text-anchor="middle">return content</text>
+
+  <!-- chips: context side (top) -->
+  <g font-size="11.5" font-weight="600">
+    <rect x="602" y="236" width="118" height="26" rx="13" fill="#eef2ff" stroke="#c7d2fe"/>
+    <text x="661" y="253" fill="#3730a3" text-anchor="middle">s03 permissions</text>
+    <rect x="730" y="236" width="118" height="26" rx="13" fill="#eef2ff" stroke="#c7d2fe"/>
+    <text x="789" y="253" fill="#3730a3" text-anchor="middle">s08 hooks</text>
+    <rect x="602" y="270" width="118" height="26" rx="13" fill="#eef2ff" stroke="#c7d2fe"/>
+    <text x="661" y="287" fill="#3730a3" text-anchor="middle">s05 subagents</text>
+    <rect x="730" y="270" width="118" height="26" rx="13" fill="#eef2ff" stroke="#c7d2fe"/>
+    <text x="789" y="287" fill="#3730a3" text-anchor="middle">s10 MCP</text>
+    <rect x="602" y="304" width="246" height="26" rx="13" fill="#eef2ff" stroke="#c7d2fe"/>
+    <text x="725" y="321" fill="#3730a3" text-anchor="middle">s02 bash · read · write · edit · grep</text>
+  </g>
+  <line x1="596" y1="290" x2="550" y2="290" stroke="#a5b4fc" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="725" y="352" font-size="11" fill="#64748b" text-anchor="middle">what a tool call has to pass through</text>
+
+  <g font-size="11.5" font-weight="600">
+    <rect x="32" y="300" width="108" height="26" rx="13" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <text x="86" y="317" fill="#166534" text-anchor="middle">s04 todos</text>
+    <rect x="148" y="300" width="108" height="26" rx="13" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <text x="202" y="317" fill="#166534" text-anchor="middle">s06 skills</text>
+    <rect x="32" y="334" width="108" height="26" rx="13" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <text x="86" y="351" fill="#166534" text-anchor="middle">s07 compaction</text>
+    <rect x="148" y="334" width="108" height="26" rx="13" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <text x="202" y="351" fill="#166534" text-anchor="middle">s09 memory</text>
+  </g>
+  <text x="144" y="382" font-size="11" fill="#64748b" text-anchor="middle">what goes into the context</text>
+  <path d="M260,330 C 280,330 280,200 292,176" stroke="#86efac" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+
+  <text x="440" y="414" font-size="12" fill="#94a3b8" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">harness = the loop + everything around it</text>
+</svg>
