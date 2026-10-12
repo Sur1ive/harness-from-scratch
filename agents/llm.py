@@ -43,6 +43,9 @@ PRESETS = {
     "qwen": ("openai", "https://dashscope.aliyuncs.com/compatible-mode/v1", "DASHSCOPE_API_KEY", "qwen-plus"),
     "kimi": ("openai", "https://api.moonshot.cn/v1", "MOONSHOT_API_KEY", None),
     "glm": ("openai", "https://open.bigmodel.cn/api/paas/v4", "ZHIPUAI_API_KEY", None),
+    "siliconflow": ("openai", "https://api.siliconflow.cn/v1", "SILICONFLOW_API_KEY", None),
+    "doubao": ("openai", "https://ark.cn-beijing.volces.com/api/v3", "ARK_API_KEY", None),
+    "gemini": ("openai", "https://generativelanguage.googleapis.com/v1beta/openai", "GEMINI_API_KEY", None),
     "openrouter": ("openai", "https://openrouter.ai/api/v1", "OPENROUTER_API_KEY", None),
     "openai": ("openai", "https://api.openai.com/v1", "OPENAI_API_KEY", None),
     "ollama": ("openai", "http://localhost:11434/v1", None, None),
@@ -242,7 +245,8 @@ def last_tool_output(messages):
 
 def from_env():
     """
-    HARNESS_PROVIDER  anthropic | deepseek | qwen | kimi | glm | openrouter | openai | ollama | mock
+    HARNESS_PROVIDER  anthropic | deepseek | qwen | kimi | glm | siliconflow | doubao | gemini |
+                      openrouter | openai | ollama | mock
     HARNESS_MODEL     model id (required for presets without a default)
     HARNESS_API_KEY   overrides the preset's key variable
     HARNESS_BASE_URL  any OpenAI-compatible endpoint (vLLM, LM Studio, one-api, ...)

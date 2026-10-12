@@ -52,6 +52,9 @@ SUBAGENT_PROMPT = ("You are a subagent working in {cwd} on behalf of a parent ag
 
 # -- tools (from s02) -----------------------------------------------------------
 
+SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__", ".harness"}
+
+
 def safe_path(p):
     root = Path.cwd().resolve()
     path = (root / p).resolve()
@@ -96,14 +99,14 @@ def edit_file(path, old, new):
 
 def glob_files(pattern):
     root = Path.cwd()
-    hits = sorted(str(p.relative_to(root)) for p in root.glob(pattern) if ".git" not in p.parts)
+    hits = sorted(str(p.relative_to(root)) for p in root.glob(pattern) if not SKIP_DIRS & set(p.parts))
     return "\n".join(hits[:200]) or "(no matches)"
 
 
 def grep(pattern, path=".", glob="**/*"):
     rx = re.compile(pattern)
     base = safe_path(path)
-    files = [base] if base.is_file() else (p for p in base.glob(glob) if p.is_file() and ".git" not in p.parts)
+    files = [base] if base.is_file() else (p for p in base.glob(glob) if p.is_file() and not SKIP_DIRS & set(p.parts))
     hits = []
     for f in files:
         try:

@@ -58,6 +58,9 @@ SUBAGENT_PROMPT = ("You are a subagent working in {cwd} on behalf of a parent ag
 
 # -- tools (from s02) -----------------------------------------------------------
 
+SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__", ".harness"}
+
+
 def safe_path(p):
     root = Path.cwd().resolve()
     path = (root / p).resolve()
@@ -102,14 +105,14 @@ def edit_file(path, old, new):
 
 def glob_files(pattern):
     root = Path.cwd()
-    hits = sorted(str(p.relative_to(root)) for p in root.glob(pattern) if ".git" not in p.parts)
+    hits = sorted(str(p.relative_to(root)) for p in root.glob(pattern) if not SKIP_DIRS & set(p.parts))
     return "\n".join(hits[:200]) or "(no matches)"
 
 
 def grep(pattern, path=".", glob="**/*"):
     rx = re.compile(pattern)
     base = safe_path(path)
-    files = [base] if base.is_file() else (p for p in base.glob(glob) if p.is_file() and ".git" not in p.parts)
+    files = [base] if base.is_file() else (p for p in base.glob(glob) if p.is_file() and not SKIP_DIRS & set(p.parts))
     hits = []
     for f in files:
         try:
@@ -465,7 +468,7 @@ class MCPServer:
         return f"Error: {text}" if result.get("isError") else text
 
 
-mcp_servers = {}
+mcp_servers, mcp_failed = {}, set()
 
 
 def connect_mcp():
@@ -474,12 +477,13 @@ def connect_mcp():
         if not f.is_file():
             continue
         for name, cfg in json.loads(f.read_text()).get("mcpServers", {}).items():
-            if name in mcp_servers or "command" not in cfg:
+            if name in mcp_servers or name in mcp_failed or "command" not in cfg:
                 continue
             try:
                 server = mcp_servers[name] = MCPServer(name, cfg["command"], cfg.get("args", []), cfg.get("env"))
             except (OSError, RuntimeError, json.JSONDecodeError) as e:
                 print(red(f"    MCP server {name!r} failed to start: {e}"))
+                mcp_failed.add(name)
                 continue
             for t in server.tools:
                 full = re.sub(r"[^a-zA-Z0-9_-]", "_", f"mcp__{name}__{t['name']}")[:64]

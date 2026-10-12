@@ -85,7 +85,7 @@ python agents/s10_mcp.py
 
 ## 支持任意模型
 
-一种中立的消息格式，两种线协议，十几家服务商，全部在
+一种中立的消息格式，两种线协议，主流服务商全覆盖，全部在
 [`agents/llm.py`](agents/llm.py) 里，只用了标准库 `urllib`。
 
 | `HARNESS_PROVIDER` | API Key 环境变量 | 默认模型 |
@@ -94,6 +94,9 @@ python agents/s10_mcp.py
 | `qwen`（通义千问） | `DASHSCOPE_API_KEY` | `qwen-plus` |
 | `kimi`（月之暗面） | `MOONSHOT_API_KEY` | 需设置 `HARNESS_MODEL` |
 | `glm`（智谱） | `ZHIPUAI_API_KEY` | 需设置 `HARNESS_MODEL` |
+| `siliconflow`（硅基流动） | `SILICONFLOW_API_KEY` | 需设置 `HARNESS_MODEL` |
+| `doubao`（豆包 / 火山方舟） | `ARK_API_KEY` | 需设置 `HARNESS_MODEL` |
+| `gemini` | `GEMINI_API_KEY` | 需设置 `HARNESS_MODEL` |
 | `anthropic` | `ANTHROPIC_API_KEY` | `claude-opus-5-5` |
 | `openrouter` | `OPENROUTER_API_KEY` | 需设置 `HARNESS_MODEL` |
 | `openai` | `OPENAI_API_KEY` | 需设置 `HARNESS_MODEL` |

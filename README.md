@@ -87,7 +87,7 @@ Read them in order. Every file is complete and runnable, so
 
 ## Works with any model
 
-One neutral message format, two wire protocols, a dozen providers. All of it is in
+One neutral message format, two wire protocols, every major provider. All of it is in
 [`agents/llm.py`](agents/llm.py), using only the standard library's `urllib`.
 
 | `HARNESS_PROVIDER` | API key variable | Default model |
@@ -97,6 +97,9 @@ One neutral message format, two wire protocols, a dozen providers. All of it is 
 | `qwen` | `DASHSCOPE_API_KEY` | `qwen-plus` |
 | `kimi` | `MOONSHOT_API_KEY` | set `HARNESS_MODEL` |
 | `glm` | `ZHIPUAI_API_KEY` | set `HARNESS_MODEL` |
+| `siliconflow` | `SILICONFLOW_API_KEY` | set `HARNESS_MODEL` |
+| `doubao` (Volcengine Ark) | `ARK_API_KEY` | set `HARNESS_MODEL` |
+| `gemini` | `GEMINI_API_KEY` | set `HARNESS_MODEL` |
 | `openrouter` | `OPENROUTER_API_KEY` | set `HARNESS_MODEL` |
 | `openai` | `OPENAI_API_KEY` | set `HARNESS_MODEL` |
 | `ollama` | none (local) | set `HARNESS_MODEL` |
